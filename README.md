@@ -1,7 +1,6 @@
 # Taller Evaluativo #2
 
 - **Rama:** `develop`
-- **GitHub:** https://github.com/JulianCReal/5Fantasticos_Back
 
 ## 👥 Desarrolladores
 - KAROL ESTEFANY ESTUPIÑAN VIANCHA
