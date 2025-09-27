@@ -1,7 +1,7 @@
 package com.example.demo.builder;
 
-import com.example.demo.ReporteBasico;
-import com.example.demo.Transaccion;
+import com.example.demo.model.ReporteBasico;
+import com.example.demo.model.Transaccion;
 
 import java.util.ArrayList;
 import java.util.Date;
