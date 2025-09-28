@@ -35,7 +35,7 @@ public class ReporteBasico implements Reporte {
 
     @Override
     public String generar() {
-        return "";
+        return this.contenido;
     }
 
     public String getId() {
@@ -80,4 +80,3 @@ public class ReporteBasico implements Reporte {
         this.contenido = contenido;
     }
 }
-

@@ -1,5 +1,6 @@
 package com.example.demo.controller;
-import com.example.demo.Decorator.Reporte;
+import com.example.demo.Decorator.*;
+import com.example.demo.builder.ReporteBuilder;
 import com.example.demo.model.ReporteBasico;
 import com.example.demo.service.ReporteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,34 @@ public class ReporteController {
         ReporteBasico reporteGuardado = reporteService.guardar(reporte);
         return ResponseEntity.ok(reporteGuardado);
     }
+    @PostMapping("/decorado")
+    public ResponseEntity<?> crearReporteDecorado(
+            @RequestParam String titulo,
+            @RequestParam String autor,
+            @RequestParam String contenido,
+            @RequestParam(defaultValue = "false") boolean agregarGraficas,
+            @RequestParam(defaultValue = "false") boolean agregarEstadisticas,
+            @RequestParam(defaultValue = "false") boolean agregarMarcaAgua,
+            @RequestParam(defaultValue = "false") boolean hacerExportablePDF) {
+        try {
+            ReporteBuilder builder = new ReporteBuilder()
+                .titulo(titulo)
+                .autor(autor)
+                .contenido(contenido)
+                .fechaGeneracion(LocalDate.now());
+
+            if (agregarGraficas) builder.conGraficas();
+            if (agregarEstadisticas) builder.conEstadisticas();
+            if (agregarMarcaAgua) builder.conMarcaAgua();
+            if (hacerExportablePDF) builder.exportableAPDF();
+
+            ReporteBasico reporte = builder.build();
+            return ResponseEntity.ok(reporteService.guardar(reporte));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error al crear el reporte: " + e.getMessage());
+        }
+    }
+
     @GetMapping
     public ResponseEntity<?> listarReportes() {
         return ResponseEntity.ok(reporteService.obtenerTodos());
