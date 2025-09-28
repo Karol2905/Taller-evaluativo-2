@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,7 +15,9 @@ public class ReporteService {
     @Autowired
     private ReporteRepository reporteRepository;
 
-    public ReporteBasico guardar(ReporteBasico reporte) {return reporteRepository.save(reporte);}
+    public ReporteBasico guardar(ReporteBasico reporte) {
+        return reporteRepository.save(reporte);
+    }
 
     public List<ReporteBasico> obtenerTodos() {
         return reporteRepository.findAll();
@@ -39,12 +40,15 @@ public class ReporteService {
     }
 
     public List<ReporteBasico> buscarPorFechaGeneracion(LocalDate fechaGeneracion) {
-        return reporteRepository.findAll().stream().filter(r -> r.getFechaGeneracion() != null && r.getFechaGeneracion().equals(fechaGeneracion))
-                .collect(Collectors.toList());
+        return reporteRepository.findAll().stream()
+            .filter(r -> r.getFechaGeneracion() != null && r.getFechaGeneracion().equals(fechaGeneracion))
+            .collect(Collectors.toList());
     }
+
     public List<ReporteBasico> filtrarPorRango(LocalDate inicio, LocalDate fin) {
-        return reporteRepository.findAll().stream().filter(r -> !r.getFechaGeneracion().isBefore(inicio) && !r.getFechaGeneracion().isAfter(fin))
-                .collect(Collectors.toList());
+        return reporteRepository.findAll().stream()
+            .filter(r -> !r.getFechaGeneracion().isBefore(inicio) && !r.getFechaGeneracion().isAfter(fin))
+            .collect(Collectors.toList());
     }
 
     public List<Reporte> buscarPorAutor(String autor) {
