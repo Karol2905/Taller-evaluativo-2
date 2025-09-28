@@ -3,12 +3,12 @@ package com.example.demo.builder;
 import com.example.demo.model.ReporteBasico;
 import com.example.demo.model.Transaccion;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class ReporteBuilder {
     private String titulo;
-    private Date fechaGeneracion;
+    private LocalDate fechaGeneracion;
     private String autor;
     private ArrayList<Transaccion> transacciones = new ArrayList<>();
     private String contenido;
@@ -19,7 +19,7 @@ public class ReporteBuilder {
         return this;
     }
 
-    public ReporteBuilder fechaGeneracion(Date fechaGeneracion) {
+    public ReporteBuilder fechaGeneracion(LocalDate fechaGeneracion) {
         this.fechaGeneracion = fechaGeneracion;
         return this;
     }
