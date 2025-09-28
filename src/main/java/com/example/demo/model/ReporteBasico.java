@@ -5,8 +5,10 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+
+
 
 @Document(collection = "Reportes")
 public class ReporteBasico implements Reporte {
@@ -14,12 +16,12 @@ public class ReporteBasico implements Reporte {
     private String id;
 
     private String titulo;
-    private Date fechaGeneracion;
+    private LocalDate fechaGeneracion;
     private String autor;
     private ArrayList<Transaccion> transacciones;
     private String contenido;
 
-    public ReporteBasico(String titulo, Date fechaGeneracion, String autor, String contenido) {
+    public ReporteBasico(String titulo, LocalDate fechaGeneracion, String autor, String contenido) {
         this.titulo = titulo;
         this.fechaGeneracion = fechaGeneracion;
         this.autor = autor;
@@ -50,10 +52,10 @@ public class ReporteBasico implements Reporte {
         this.titulo = titulo;
     }
 
-    public Date getFechaGeneracion() {
+    public LocalDate getFechaGeneracion() {
         return fechaGeneracion;
     }
-    public void setFechaGeneracion(Date fechaGeneracion) {
+    public void setFechaGeneracion(LocalDate fechaGeneracion) {
         this.fechaGeneracion = fechaGeneracion;
     }
 

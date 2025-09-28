@@ -11,6 +11,5 @@ import java.util.List;
 @Repository
 public interface ReporteRepository extends MongoRepository<ReporteBasico, String> {
     List<Reporte> findByTitulo(String titulo);
-    List<Reporte> findByFechaGeneracion(Date fechaGeneracion);
     List<Reporte> findByAutor(String autor);
 }

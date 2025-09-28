@@ -1,9 +1,15 @@
 package com.example.demo.controller;
+import com.example.demo.Decorator.Reporte;
 import com.example.demo.model.ReporteBasico;
 import com.example.demo.service.ReporteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/reportes")
@@ -47,5 +53,26 @@ public class ReporteController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/fecha/{fecha}")
+    public ResponseEntity<?> filtrarPorFecha(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha) {
+        return ResponseEntity.ok(reporteService.buscarPorFechaGeneracion(fecha));
+    }
+    @GetMapping("/rangoFechas") //entre?inicio=2025-09-01&fin=2025-09-15
+    public ResponseEntity<?> filtrarEntreFechas(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate inicio, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fin) {
+        return ResponseEntity.ok(reporteService.filtrarPorRango(inicio, fin));
+    }
+
+    @GetMapping("/titulo/{titulo}")
+    public ResponseEntity<?> filtrarPorTitulo(@PathVariable String titulo) {
+        List<Reporte> resultados = reporteService.buscarPorTitulo(titulo);
+        return ResponseEntity.ok(resultados);
+    }
+
+    @GetMapping("/autor/{autor}")
+    public ResponseEntity<?> filtrarPorAutor(@PathVariable String autor) {
+        List<Reporte> resultados = reporteService.buscarPorAutor(autor);
+        return ResponseEntity.ok(resultados);
     }
 }

@@ -6,8 +6,10 @@ import com.example.demo.repository.ReporteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ReporteService {
@@ -35,9 +37,16 @@ public class ReporteService {
     public List<Reporte> buscarPorTitulo(String titulo) {
         return reporteRepository.findByTitulo(titulo);
     }
-    public List<Reporte> buscarPorFechaGeneracion(Date fechaGeneracion) {
-        return reporteRepository.findByFechaGeneracion(fechaGeneracion);
+
+    public List<ReporteBasico> buscarPorFechaGeneracion(LocalDate fechaGeneracion) {
+        return reporteRepository.findAll().stream().filter(r -> r.getFechaGeneracion() != null && r.getFechaGeneracion().equals(fechaGeneracion))
+                .collect(Collectors.toList());
     }
+    public List<ReporteBasico> filtrarPorRango(LocalDate inicio, LocalDate fin) {
+        return reporteRepository.findAll().stream().filter(r -> !r.getFechaGeneracion().isBefore(inicio) && !r.getFechaGeneracion().isAfter(fin))
+                .collect(Collectors.toList());
+    }
+
     public List<Reporte> buscarPorAutor(String autor) {
         return reporteRepository.findByAutor(autor);
     }
