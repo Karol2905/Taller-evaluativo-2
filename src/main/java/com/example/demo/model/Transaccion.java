@@ -1,7 +1,10 @@
 package com.example.demo.model;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Date;
 
+@Document (collection = "Transacciones")
 public class Transaccion {
     private String id;
     private double monto;
