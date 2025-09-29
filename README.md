@@ -20,7 +20,11 @@ Gracias a la implementación de patrones de diseño como Builder y Decorator, lo
 
 El sistema también permite listar todos los reportes generados y filtrarlos por fecha mediante Streams, garantizando eficiencia y flexibilidad en la gestión de la información. Todos los reportes se persisten en MongoDB, asegurando almacenamiento confiable y escalable.
 
-El desarrollo sigue buenas prácticas de Gitflow, principios SOLID y arquitectura en capas, garantizando un código mantenible, modular y de alta calidad.
+## Funcionamiento del Proyecto con Postman 
+A continuación un breve video para mostrar el funcionamiento del proyecto utilizando la herramienta de Postman
+**https://pruebacorreoescuelaingeduco-my.sharepoint.com/:v:/g/personal/julian_castiblanco-r_mail_escuelaing_edu_co/Ebq4ibbMroBKlx1Jjx67KkcBpj8VcFRTbzNgxOG-GXIe1w?e=UEfn9M**
+
+
 
 ## 📐 Principios SOLID:
 1. **Single Responsibility Principle (SRP)**  
@@ -136,6 +140,7 @@ Esto mejora la mantenibilidad, escalabilidad y testabilidad del sistema.
  <img width="1030" height="689" alt="image" src="https://github.com/user-attachments/assets/1404925d-1942-4ad3-a12d-f2d3122d5273" />
 
   </p>
+
 
   En este diagrama se muestra como se conecta el back con los distintos componentes utilizando MVC (Modelo - Vista - Controlador) que está adaptado a Spring Boot.
 
