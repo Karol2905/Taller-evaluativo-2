@@ -29,6 +29,10 @@ public class ReporteBasico implements Reporte {
         this.transacciones = new ArrayList<>();
     }
 
+    public ReporteBasico() {
+
+    }
+
     public void addTransaccion(Transaccion transaccion) {
         this.transacciones.add(transaccion);
     }
